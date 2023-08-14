@@ -29,13 +29,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="id_user">User:</label>
-                <select class="form-control" id="id_user" name="id_user">
-                    <option>------</option>
-                <?php foreach ($user as $listUser) : ?>
-                    <option value="<?=$listUser['id_user']?>"><?=$listUser['nama']?></option>
-                <?php endforeach; ?>
-                </select>
+                <input type="hidden" name="id_user" value="<?= session()->get('id'); ?>">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success mt-4">Simpan Perubahan</button>

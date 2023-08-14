@@ -44,7 +44,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?= $userData['nama']; ?></h5>
                         <p class="card-text"><?= $userData['email']; ?></p>
-                        <!-- <a href="edit_user.php?id=<?= $userData['id_user'];?>" class="btn btn-primary">Edit Profil</a> -->
+                        <a href="edit_user.php?id=<?= $userData['id_user'];?>" class="btn btn-primary">Edit Profil</a> 
                     </div>
                 </div>
             </div>

@@ -7,40 +7,11 @@
 <style type="text/css">
     .card {
         width: 400px;
+        
     }
 </style>
 <body>
-    <?php
-    /*if (isset($_GET['pesan'])) {
-        $pesan = $_GET['pesan'];
-        $jenis = isset($_GET['jenis']) ? $_GET['jenis'] : 'success'; // jenis default adalah "success" jika tidak diset
-
-        // Tampilkan komponen alert Bootstrap dengan pesan dan jenis notifikasi yang sesuai
-        echo '<div class="alert alert-' . $jenis . ' alert-dismissible fade show" role="alert">';
-        echo $pesan;
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-        echo '</div>';
-    } elseif (isset($_GET['pesan2'])) {
-        $pesan2 = $_GET['pesan2'];
-        $jenis2 = isset($_GET['jenis2']) ? $_GET['jenis2'] : 'success'; // jenis default adalah "success" jika tidak diset
-
-        // Tampilkan komponen alert Bootstrap dengan pesan dan jenis notifikasi yang sesuai
-        echo '<div class="alert alert-' . $jenis2 . ' alert-dismissible fade show" role="alert">';
-        echo $pesan2;
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-        echo '</div>';
-    } elseif (isset($_GET['pesan3'])) {
-        $pesan2 = $_GET['pesan3'];
-        $jenis2 = isset($_GET['jenis3']) ? $_GET['jenis3'] : 'success'; // jenis default adalah "success" jika tidak diset
-
-        // Tampilkan komponen alert Bootstrap dengan pesan dan jenis notifikasi yang sesuai
-        echo '<div class="alert alert-' . $jenis3 . ' alert-dismissible fade show" role="alert">';
-        echo $pesan3;
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-        echo '</div>';
-    }*/
-    ?>
-
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/dashboard">Catatan Pribadi</a>

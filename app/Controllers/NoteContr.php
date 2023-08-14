@@ -11,16 +11,14 @@ class NoteContr extends BaseController
         $session = session();
         $id = $session->get('id');
         $model = model(NoteModel::class);
-        $data['note'] = $model->getData($id)->getResultArray();
+        $data['note'] = $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->getWhere(["id_user" => $id])->getResultArray();
         return view('Dashboard', $data);
     }
 
     public function save()
     {
-        $this->kategori = model(KategoriModel::class);
-        $this->user = model(UserModel::class);
-        $list['data'] = $this->kategori->findAll();
-        $list['data2'] = $this->user->findAll();
+        $kategori = model(KategoriModel::class);
+        $list['data'] = $kategori->findAll();
         return view('AddNote', $list);
     }
 
@@ -74,7 +72,7 @@ class NoteContr extends BaseController
     public function delete($id)
     {
         $model = model(NoteModel::class);
-        $model->delete($id);
+        $model->delete($id); 
         return redirect()->to('/dashboard');
     }
 
@@ -83,7 +81,7 @@ class NoteContr extends BaseController
         $session = session();
         $id = $session->get('id');
         $model = model(UserModel::class);
-        $data['user'] = $model->getDataUser($id)->getResultArray();
+        $data['user'] = $model->getWhere(['id_user' => $id])->getResultArray();
         return view('UserProfile', $data);
     }
 }

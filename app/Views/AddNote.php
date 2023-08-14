@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Tambah Catatan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- include summernote css/js-->
+    <link href="<?= base_url() ?>vendor/summernote/summernote.css" rel="stylesheet">
+    <script src="<?= base_url() ?>vendor/summernote/summernote.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,10 +47,17 @@
                 <label for="judul">Judul</label>
                 <input type="text" class="form-control" id="judul" name="title" required>
             </div>
-
-            <div class="form-group">
-                <label for="konten">Konten</label>
-                <textarea class="form-control" id="konten" name="content" rows="4" required></textarea>
+            <div class="form-group mt-4">
+                <textarea class="summernote"></textarea>
+                    <script>
+                        $(document).ready(function() {
+                            $('.summernote').summernote({
+                                tabsize: 2,
+                                height: 100,
+                                toolbar: true
+                            });
+                        });
+                    </script>
             </div>
             <div class="form-group">
                 <label for="kategori">Kategori:</label>
@@ -57,18 +69,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="id_user">User:</label>
-                <select class="form-control" id="id_user" name="id_user">
-                    <option>------</option>
-                <?php foreach ($data2 as $listNote) : ?>
-                    <option value="<?=$listNote['id_user']?>"><?=$listNote['nama']?></option>
-                <?php endforeach; ?>
-                </select>
+                <input type="hidden" name="id_user" value="<?= session()->get('id'); ?>">
             </div>
             <button type="submit" class="btn btn-primary mt-4">Simpan</button>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 </body>
 </html>
 
