@@ -10,8 +10,7 @@
         
     }
 </style>
-<body>
-    
+<body>  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/dashboard">Catatan Pribadi</a>
@@ -26,7 +25,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/saveNote">Tambah Catatan</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown float-end">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown link
                         </a>
@@ -36,8 +35,6 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
-
-
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Keluar</a>
                     </li>
