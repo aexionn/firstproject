@@ -6,9 +6,9 @@
         <?php foreach ($user as $userData) { ?>
         <div class="card mb-3">
             <div>
-                <!-- <div class="col-md-4">
-                    <img src="#" alt="Foto Profil" class="img-fluid">
-                </div> -->
+                <div class="col-md-4">
+                    <img src="<?= base_url() ?>vendor/image/user.png" alt="Foto Profil" class="img-fluid">
+                </div>
                 <div class="col-md-4">
                     <div class="card-body">
                         <h5 class="card-title"><?= $userData['nama']; ?></h5>

@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.css">
 </head>
 <style type="text/css">
-    .card { width: 400px; }
+    .card { width: 50%; }
 </style>
 <body>  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
