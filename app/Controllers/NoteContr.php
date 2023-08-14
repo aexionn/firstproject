@@ -76,4 +76,12 @@ class NoteContr extends BaseController
         return redirect()->to('/dashboard');
     }
 
+    public function profile()
+    {
+        $session = session();
+        $id = $session->get('id');
+        $model = model(UserModel::class);
+        $data['user'] = $model->getWhere(['id_user' => $id])->getResultArray();
+        return view('UserProfile', $data);
+    }
 }

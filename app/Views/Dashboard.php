@@ -5,10 +5,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.css">
 </head>
 <style type="text/css">
-    .card {
-        width: 400px;
-        
-    }
+    .card { width: 400px;  }
 </style>
 <body>  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,18 +22,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/saveNote">Tambah Catatan</a>
                     </li>
-                    <li class="nav-item dropdown float-end">
+                    <li class="nav-item dropdown dropdown-end">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
+                            Hi, <?=userData()->nama ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a class="dropdown-item text-danger" href="/logout">Keluar</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Keluar</a>
                     </li>
                 </ul>
             </div>
@@ -64,6 +58,6 @@
         </div>
         <?php endforeach; ?>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

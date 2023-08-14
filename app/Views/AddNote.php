@@ -24,11 +24,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/saveNote">Tambah Catatan</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/userProfile">Profil Pengguna</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout" disabled>Keluar</a>
+                    <li class="nav-item dropdown dropdown-end">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hi, <?=userData()->nama ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a class="dropdown-item text-danger" href="/logout">Keluar</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -48,7 +52,7 @@
                 <input type="text" class="form-control" id="judul" name="title" required>
             </div>
             <div class="form-group mt-4">
-                <textarea class="summernote"></textarea>
+                <textarea class="summernote" name="content"></textarea>
                     <script>
                         $(document).ready(function() {
                             $('.summernote').summernote({
