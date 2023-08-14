@@ -1,42 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Pengguna</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.css">
-</head>
-<body>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/dashboard">Catatan Pribadi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/saveNote">Tambah Catatan</a>
-                    </li>
-                    <li class="nav-item dropdown dropdown-end">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hi, <?=userData()->nama ?>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
-                            <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item text-danger" href="/logout">Keluar</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
+<?= $this->extend('layout/static') ?>   
+
+<?= $this->section('content') ?>    
+<div class="container">
         <h1 class="my-4">Profil Pengguna</h1>
         <?php foreach ($user as $userData) { ?>
         <div class="card mb-3">
@@ -57,6 +22,4 @@
             }
         ?>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.js"></script>
-</body>
-</html>
+<?= $this->endSection() ?>

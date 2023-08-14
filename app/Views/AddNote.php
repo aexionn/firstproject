@@ -1,44 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tambah Catatan</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <!-- include summernote css/js-->
-    <link href="<?= base_url() ?>vendor/summernote/summernote.css" rel="stylesheet">
-    <script src="<?= base_url() ?>vendor/summernote/summernote.js"></script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/dashboard">Catatan Pribadi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/saveNote">Tambah Catatan</a>
-                    </li>
-                    <li class="nav-item dropdown dropdown-end">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hi, <?=userData()->nama ?>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
-                            <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item text-danger" href="/logout">Keluar</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
+<?= $this->extend('layout/dynamic') ?>   
+
+<?= $this->section('content') ?>    
+<div class="container">
         <?php if(session()->getFlashData('addMsg')): ?>
             <div class="alert alert-warning">
                <?= session()->getFlashData('addMsg'); ?>
@@ -78,9 +41,4 @@
             <button type="submit" class="btn btn-primary mt-4">Simpan</button>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-</body>
-</html>
-
-
+<?= $this->endSection() ?>
