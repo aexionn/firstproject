@@ -10,7 +10,7 @@ class AuthGuard implements FilterInterface
     {
         if (!session('id'))
         {
-            return redirect()->to('/Login');
+            return redirect()->to('/login');
         }
     }
     

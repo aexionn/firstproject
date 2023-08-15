@@ -17,10 +17,10 @@ class RegisterContr extends BaseController
     {
         helper('form');
         $rules = [
-            'name'          => 'required|min_length[2]|max_length[50]',
-            'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[user.email]',
-            'password'      => 'required|min_length[4]|max_length[50]',
-            'confpassword'  => 'matches[password]',
+            'name'          => ['required', 'min_length[4]', 'max_length[50]'],
+            'email'         => ['required', 'min_length[4]', 'max_length[100]', 'valid_email', 'is_unique[user.email]'],
+            'password'      => ['required', 'min_length[4]', 'max_length[50]'],
+            'confpassword'  => ['matches[password]'],
         ];
         $post = $this->request->getPost();
           

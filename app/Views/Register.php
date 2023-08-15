@@ -34,11 +34,11 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" placeholder="Password" class="form-control" >
+                                <input type="password" name="password" placeholder="Password" value="<?= set_value('password') ?>" class="form-control" >
                             </div>
                             <div class="form-group mb-3">
                                 <label for="confpassword" class="form-label">Ulangi Password</label>
-                                <input type="password" name="confirmpassword" placeholder="Ulangi Password" class="form-control" >
+                                <input type="password" name="confpassword" placeholder="Ulangi Password" value="<?= set_value('confpassword') ?>" class="form-control" >
                             </div>
                             <div class="d-grid gap-3">
                                 <button type="submit" class="btn btn-primary">Daftar</button>

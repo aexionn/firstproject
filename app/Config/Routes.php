@@ -41,6 +41,9 @@ $routes->get('/edit/(:segment)', 'NoteContr::edit/$1');
 $routes->put('/editProcess/(:any)', 'NoteContr::editProcess/$1');
 $routes->delete('/delete/(:num)', 'NoteContr::delete/$1');
 $routes->get('/userProfile', 'NoteContr::profile');
+$routes->get('/editUser/(:segment)', 'NoteContr::editUser/$1');
+$routes->put('/editUserProcess/(:any)', 'NoteContr::editUserProcess/$1');
+$routes->delete('/deleteUser/(:num)', 'NoteContr::deleteUser/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

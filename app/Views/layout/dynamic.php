@@ -28,8 +28,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/editUser/<?=session()->get('id')?>">Edit Profile</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item text-danger" href="/logout">Keluar</a></li>
+                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">Keluar</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -38,6 +39,23 @@
     </nav>    
     <div class="container">
         <?= $this->renderSection('content') ?>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan !</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Anda Yakin Logout !</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/logout" role="button" class="btn btn-primary">Ya</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

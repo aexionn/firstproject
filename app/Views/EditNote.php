@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success mt-4">Simpan Perubahan</button>
-                <a href="/dashboard" class="btn btn-primary mt-4">Kembali</a>
+                <a href="/dashboard" class="btn btn-primary mt-4">Batal</a>
             </div>
         </form>
     </div>
