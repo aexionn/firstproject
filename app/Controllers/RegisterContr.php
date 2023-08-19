@@ -3,6 +3,8 @@
 namespace App\Controllers;  
 
 use App\Models\UserModel;
+use CodeIgniter\I18n\Time;
+
   
 class RegisterContr extends BaseController
 {
@@ -26,12 +28,16 @@ class RegisterContr extends BaseController
           
         if($this->validate($rules)){
             $userModel = new UserModel();
+            $date = Time::now('Asia/Shanghai');
             $data = [
-                'nama'     => $post['name'],
-                'email'    => $post['email'],
-                'password' => password_hash($post['password'], PASSWORD_DEFAULT)
+                'nama'       => $post['name'],
+                'email'      => $post['email'],
+                'password'   => password_hash($post['password'], PASSWORD_DEFAULT),
+                'image'      => 'default.jpg',
+                'created_at' => $date
             ];
-            $userModel->save($data);
+            // var_dump($data);
+            $userModel->insert($data);
             return redirect()->to('/login');
         } else{
             //$data['validation'] = $this->validator;

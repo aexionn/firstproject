@@ -10,23 +10,11 @@
         <h1 class="text-center my-4">Tambah Catatan</h1>
         <form action="/saveProcess" method="post">
             <?= csrf_field(); ?>
-            <div class="form-group">
+            <div class="form-group" style="float:left;">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul" name="title" required>
+                <input type="text" style="width: 60rem;" class="form-control" id="judul" name="title" required>
             </div>
-            <div class="form-group mt-4">
-                <textarea class="summernote" name="content"></textarea>
-                    <script>
-                        $(document).ready(function() {
-                            $('.summernote').summernote({
-                                tabsize: 2,
-                                height: 100,
-                                toolbar: true
-                            });
-                        });
-                    </script>
-            </div>
-            <div class="form-group">
+            <div class="form-group" style="float:right;">
                 <label for="kategori">Kategori:</label>
                 <select class="form-control" id="kategori" name="id_kategori">
                     <option>------</option>
@@ -34,6 +22,9 @@
                     <option value="<?=$listKategori['id_kategori']?>"><?=$listKategori['kategori']?></option>
                 <?php endforeach; ?>
                 </select>
+            </div>
+            <div class="form-group" style="padding-top: 100px;">
+                <textarea id="mytextarea" name="content"></textarea>
             </div>
             <div class="form-group">
                 <input type="hidden" name="id_user" value="<?= session()->get('id'); ?>">

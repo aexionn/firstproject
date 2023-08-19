@@ -4,8 +4,13 @@
     <title>Aplikasi Catatan Pribadi</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.css">
-    <link href="<?= base_url() ?>vendor/summernote/summernote.css" rel="stylesheet">
-    <script src="<?= base_url() ?>vendor/summernote/summernote.js"></script>
+    
+    <script src="<?= base_url() ?>vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
 </head>
 <body>  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,11 +29,11 @@
                     </li>
                     <li class="nav-item dropdown dropdown-end">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Hi, <?=userData()->nama ?>
+                            Hi, <?=session()->get('nama')?>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
-                            <li><a class="dropdown-item" href="/editUser/<?=session()->get('id')?>">Edit Profile</a></li>
+                            <!-- <li><a class="dropdown-item" href="/editUser/<?=session()->get('id')?>">Edit Profile</a></li> -->
                             <div class="dropdown-divider"></div>
                             <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">Keluar</a></li>
                         </ul>
