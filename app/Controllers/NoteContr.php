@@ -75,46 +75,4 @@ class NoteContr extends BaseController
         $model->delete($id); 
         return redirect()->to('/dashboard');
     }
-
-    public function profile()
-    {
-        $session = session();
-        $id = $session->get('id');
-        $model = model(UserModel::class);
-        $data['user'] = $model->getWhere(['id_user' => $id])->getResultArray();
-        return view('UserProfile', $data);
-    }
-
-    public function editUser($id_user=null)
-    {
-        $user = model(UserModel::class);
-        if ($id_user != null) {
-            $query = $user->getWhere(['id_user' => $id_user]);
-             if ($query->resultID->num_rows > 0) {
-                 $data['user'] = $query->getRow();
-                 return view('EditUser', $data);
-             } else {
-                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-             }
-        } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
-    }
-
-    public function editUserProcess($id)
-    {
-        $model = model(UserModel::class);
-        $data = $this->request->getPost();
-        var_dump($data);
-        $model->update($id, $data);
-        return redirect()->to('/userProfile')->with('userEditMsg', 'Data berhasil diubah'); 
-    }
-
-    public function deleteUser($id)
-    {
-        $model = model(UserModel::class);
-        $model->delete($id);
-        session()->remove('id');
-        return redirect()->to('/login');
-    }
 }

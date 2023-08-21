@@ -12,7 +12,7 @@ class RegisterContr extends BaseController
     {
         helper('form');
         $data = [];
-        return view('Register', $data);
+        return view('/register', $data);
     }
   
     public function store()
