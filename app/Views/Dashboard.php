@@ -18,6 +18,9 @@
             </div>
         </div>
         <form action="/delete/<?= $array['id'] ?>" method="post" class="d-inline">
+            <?php
+                endforeach;
+            ?>
             <?= csrf_field() ?>
             <input type="hidden" name="_method" value="DELETE">
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">>
@@ -38,6 +41,6 @@
                 </div>
             </div>
         </form>
-        <?php endforeach; ?>
     </div>
+    <?= $pager->links('note', 'bootstrap_full') ?>
 <?= $this->endSection() ?>

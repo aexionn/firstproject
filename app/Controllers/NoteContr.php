@@ -6,38 +6,61 @@ use App\Models\UserModel;
   
 class NoteContr extends BaseController
 {
+    protected $helpers = ['form'];
     public function dashboard()
     {
+        $pager = \Config\Services::pager();
         $session = session();
         $id = $session->get('id');
         $model = model(NoteModel::class);
-        $data['note'] = $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->getWhere(["id_user" => $id])->getResultArray();
+        $data = [
+            'note' => $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->where("id_user", $id)->paginate(2, 'note'),
+            'pager' => $model->pager,
+        ];
         return view('Dashboard', $data);
     }
 
     public function save()
     {
         $kategori = model(KategoriModel::class);
-        $list['data'] = $kategori->findAll();
+        $list = [
+            'data' => $kategori->findAll(),
+            'validation' => \Config\Services::validation(),
+        ];
         return view('AddNote', $list);
     }
 
     public function saveProcess()
     {
-        helper('form');
+        $model = model(NoteModel::class);
 
-        if (!$this->request->is('post')) {
-            return view('Dashboard');
+        $rules = [
+            'title'     => [
+                'rules'  => 'required|is_unique[diary.title]',
+                'errors' => [
+                    'required' => '{field}Judul Harus Diisi',
+                    'is_unique'=> '{field}Judul Sudah Terpakai',
+                ]
+            ],
+            'category'  => [
+                'rules'  => 'required',
+                'errors' => 'Kategori harus dipilih'
+            ],
+        ];
+
+        if (!$this->validate($rules)){
+            return redirect()->to('/saveNote')->withInput();
         }
+
+        // if (!$this->request->is('post')) {
+        //     return view('AddNote');
+        // }
 
         $post = $this->request->getPost();
 
-        $model = model(NoteModel::class);
-
         $model->insert($post);
 
-        session()->setFlashdata('addMsg', 'Data berhasil disimpan');
-        return redirect()->to('/saveNote');
+        return redirect()->to('/saveNote')->with('addMsg', 'Data berhasil disimpan');
     }
 
     public function edit($id=null)

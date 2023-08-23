@@ -42,8 +42,9 @@ $routes->put('/editProcess/(:any)', 'NoteContr::editProcess/$1');
 $routes->delete('/delete/(:num)', 'NoteContr::delete/$1');
 $routes->get('/userProfile', 'ProfileContr::profile');
 $routes->put('/editProfile/(:any)', 'ProfileContr::editUserData/$1');
-$routes->put('/editPassword/(:any)', 'ProfileContr::editUserPasswordr/$1');
+$routes->put('/editPassword/(:any)', 'ProfileContr::editUserPassword/$1');
 $routes->delete('/deleteUser/(:num)', 'ProfileContr::deleteUser/$1');
+$routes->put('/editAvatar', 'ProfileContr::editUserAvatar');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

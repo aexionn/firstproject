@@ -12,15 +12,22 @@
             <?= csrf_field(); ?>
             <div class="form-group" style="float:left;">
                 <label for="judul">Judul</label>
-                <input type="text" style="width: 60rem;" class="form-control" id="judul" name="title" required>
+                <input type="text" style="width: 60rem;" class="form-control <?= ($validation->hasError('title')) ? 'is-invalid' : ''; ?>" id="judul" name="title">
+                <div class="invalid-feedback">
+                    <?= $validation->getError('title'); ?>
+                </div>
+
             </div>
             <div class="form-group" style="float:right;">
                 <label for="kategori">Kategori:</label>
-                <select class="form-control" id="kategori" name="id_kategori">
+                <select class="form-control <?= ($validation->hasError('category')) ? 'is-invalid' : ''; ?>" id="kategori" name="category">
                     <option>------</option>
                 <?php foreach ($data as $listKategori) : ?>
                     <option value="<?=$listKategori['id_kategori']?>"><?=$listKategori['kategori']?></option>
                 <?php endforeach; ?>
+                <div class="invalid-feedback">
+                    <?=$validation->getError('category');?>
+                </div>
                 </select>
             </div>
             <div class="form-group" style="padding-top: 100px;">
