@@ -11,6 +11,22 @@
         selector: '#mytextarea'
       });
     </script>
+    <script>
+        function prevImage() {
+            const avatar = document.querySelector('#avatar');
+            const avatarLabel = document.querySelector('.input-group-text');
+            const previewAvatar = document.querySelector('.img-preview');
+            
+            avatarLabel.text_context = avatar.files[0].name;
+
+            const fileAvatar = new FileReader();
+            fileAvatar.readAsDataURL(avatar.files[0]);
+
+            fileAvatar.onload = function(e) {
+                previewAvatar.src = e.target.result; 
+            }
+        }
+    </script>
 </head>
 <body>  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

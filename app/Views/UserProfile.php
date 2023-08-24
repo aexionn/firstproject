@@ -14,11 +14,20 @@
 					<b>Avatar</b>
 				</div>
 				<div class="card-body">
-					<img src="<?= $userData['image'] ?>" alt="<?= htmlentities($userData['nama'], TRUE) ?>" height="80" width="80">
+                    <?php
+                        if(!$userData['image']){
+                            $avatar = 'defaultuser.jpg';
+                        } else{
+                            $avatar = $userData['image'];
+                        }
+					?>
+					<img src="/image/<?= $avatar; ?>" alt="<?= htmlentities($userData['nama'], TRUE) ?>" height="128" width="128">
                     <div style="display: flex; gap: 1em">
-						<a href="<?= site_url('admin/setting/remove_avatar') ?>" class="txt-red">Remove Avatar</a>
-						<a href="#modalEditAvatar" data-bs-toggle="modal">Change Avatar</a>
-					</div>
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <a href="#modalRemoveAvatar" data-bs-toggle="modal" class="txt-red">Remove Avatar</a>
+                        <a href="#modalEditAvatar" data-bs-toggle="modal">Change Avatar</a>
+                    </div>
 				</div>
 			</div>
 			<div class="card my-4">
@@ -46,6 +55,27 @@
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteUser">Hapus Akun</button>
 </div>
 
+        <form action="/deleteAvatar/<?= $userData['id_user'] ?>" method="post" class="d-inline">
+            <?= csrf_field() ?>
+            <input type="hidden" name="_method" value="DELETE">
+            <div class="modal fade" id="modalRemoveAvatar" tabindex="-1" aria-labelledby="modalRemoveAvatarLabel" aria-hidden="true">>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title">Peringatan !</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p>Apakah Anda Yakin Ingin Foto Profil Anda ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Ya</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <!--- Modal notif Delete User -->
         <form action="/deleteUser/<?= $userData['id_user'] ?>" method="post" class="d-inline">
@@ -81,15 +111,14 @@
                         <?php
                             helper('form');
                         ?>
-                        <form action="/editAvatar/" method="post">
+                        <form action="/editAvatar/<?= $userData['id_user']?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-                            <?= form_open_multipart('/editAvatar') ?>
                                 <input type="hidden" name="_method" value="PUT">
                                 <div class="input-group mb-3">
-                                    <input type="file" class="form-control" name="avatar">
-                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                    <img src="/image/defaultuser.jpg" class="img-thumbnail img-preview">
+                                    <input type="file" class="form-control" id="avatar" name="avatar" onchange="prevImage()">
+                                    <label class="input-group-text" for="avatar">Upload</label>
                                 </div>
-
                             <div class="form-group modal-footer">
                                 <button type="submit" class="btn btn-primary" value="upload">Ubah</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

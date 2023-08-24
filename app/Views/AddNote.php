@@ -12,7 +12,7 @@
             <?= csrf_field(); ?>
             <div class="form-group" style="float:left;">
                 <label for="judul">Judul</label>
-                <input type="text" style="width: 60rem;" class="form-control <?= ($validation->hasError('title')) ? 'is-invalid' : ''; ?>" id="judul" name="title">
+                <input type="text" style="width: 60rem;" class="form-control <?php ($validation->hasError('title') ? 'is-invalid' : '') ?>" id="judul" name="title" value="<?= old('title'); ?>">
                 <div class="invalid-feedback">
                     <?= $validation->getError('title'); ?>
                 </div>
@@ -20,15 +20,15 @@
             </div>
             <div class="form-group" style="float:right;">
                 <label for="kategori">Kategori:</label>
-                <select class="form-control <?= ($validation->hasError('category')) ? 'is-invalid' : ''; ?>" id="kategori" name="category">
+                <select class="form-control <?php ($validation->hasError('kategori') ? 'is-invalid' : '') ?>" id="kategori" name="kategori">
                     <option>------</option>
                 <?php foreach ($data as $listKategori) : ?>
                     <option value="<?=$listKategori['id_kategori']?>"><?=$listKategori['kategori']?></option>
                 <?php endforeach; ?>
-                <div class="invalid-feedback">
-                    <?=$validation->getError('category');?>
-                </div>
                 </select>
+                <div class="invalid-feedback">
+                    <?= $validation->getError('kategori');?>
+                </div>
             </div>
             <div class="form-group" style="padding-top: 100px;">
                 <textarea id="mytextarea" name="content"></textarea>

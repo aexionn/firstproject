@@ -48,7 +48,19 @@ class NoteContr extends BaseController
             ],
         ];
 
-        if (!$this->validate($rules)){
+        if (!$this->validate([
+            'title'=> [
+            'rules'  => 'required|is_unique[diary.title]',
+            'errors' => [
+                'required' => '{field}Judul Harus Diisi',
+                'is_unique'=> '{field}Judul Sudah Terpakai',
+            ]
+        ],
+        'category'  => [
+            'rules'  => 'required',
+            'errors' => 'Kategori harus dipilih'
+        ]
+        ])){
             return redirect()->to('/saveNote')->withInput();
         }
 
