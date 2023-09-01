@@ -14,7 +14,10 @@ class ProfileContr extends BaseController
         $session = session();
         $model = model(UserModel::class);
         $id = $session->get('id');
-        $data['user'] = $model->getWhere(['id_user' => $id])->getResultArray();
+        $data = [
+            'user' => $model->getWhere(['id_user' => $id])->getResultArray(),
+            'validation' => \Config\Services::validation(),
+        ];
         return view('UserProfile', $data);
     }
 
@@ -88,8 +91,8 @@ class ProfileContr extends BaseController
         $model = model(UserModel::class);
         $avatar = $model->find($id_user);
 
-        if ($avatar['image'] != 'defaultuser.jpg') {
-            return redirect()->to('/userProfile')->with('userEditMsg', 'Anda tidak memiliki foto profil!');
+        if ($avatar['image'] == '') {
+            return redirect()->to('/userProfile')->with('avatarErr', 'Anda tidak memiliki foto profil!');
         }
         unlink('image/' . $avatar['image']);
 

@@ -17,11 +17,12 @@
                     <?php
                         if(!$userData['image']){
                             $avatar = 'defaultuser.jpg';
-                        } else{
+                        }
+                        else{
                             $avatar = $userData['image'];
                         }
 					?>
-					<img src="/image/<?= $avatar; ?>" alt="<?= htmlentities($userData['nama'], TRUE) ?>" height="128" width="128">
+					<img src="/image/<?= $avatar; ?>" alt="<?= htmlentities($userData['nama'], TRUE) ?>" height="128" width="128" class="">
                     <div style="display: flex; gap: 1em">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">

@@ -12,7 +12,6 @@ class UserMigrate extends Migration
             'id_user' => [
                 'type'           => 'INT',
                 'constraint'     => 100,
-                'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'email' => [
@@ -33,11 +32,9 @@ class UserMigrate extends Migration
             ],
             'created_at' => [
                 'type'       => 'TIMESTAMP',
-                'null'    => TRUE,
             ],
             'updated_at' => [
                 'type'       => 'TIMESTAMP',
-                'null'    => TRUE,
             ],
         ]);
         $this->forge->addKey('id_user', true);
