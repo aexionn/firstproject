@@ -14,7 +14,7 @@ class NoteContr extends BaseController
         $id = $session->get('id');
         $model = model(NoteModel::class);
         $data = [
-            'note' => $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->where("id_user", $id)->paginate(2, 'note'),
+            'note' => $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->where("id_user", $id)->paginate(3, 'note'),
             'pager' => $model->pager,
         ];
         return view('Dashboard', $data);
@@ -99,7 +99,7 @@ class NoteContr extends BaseController
     {
         $model = model(NoteModel::class);
         $data = $this->request->getPost();
-        var_dump($data);
+        // var_dump($data);
         $model->update($id, $data);
         return redirect()->to('/dashboard')->with('editMsg', 'Data berhasil diubah'); 
     }
@@ -109,5 +109,13 @@ class NoteContr extends BaseController
         $model = model(NoteModel::class);
         $model->delete($id); 
         return redirect()->to('/dashboard');
+    }
+
+    public function search()
+    {
+        $model = model(NoteModel::class);
+        $title = $this->request->getVar('cari');
+        $searchRow['row'] = $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->where("title", $title)->first();        
+        return view('SearchRes', $searchRow);
     }
 }
