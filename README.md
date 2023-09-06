@@ -1,18 +1,12 @@
-# CodeIgniter 4 Application Starter
+# Aplikasi Catatan Pribadi
 
-## What is CodeIgniter?
+## Tugas Akhir Web SMKN 4 Banjarmasin Kelas 12
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Sedikit informasi aplikasi ini berbasis framework PHP yang sudah kurang peminatnya (CodeIgniter),
+tetapi memiliki dokumentasi bawaan yang paling mudah dibaca ketimbang framework PHP lainnya.
+Info lebih lanjut dapat dilihat di [official site](https://codeigniter.com).
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
-
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
-
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+Aplikasi Sederhana ini juga dibuat menggunakan sedikit sentuhan javascript (hasil Copy Paste StackOverflow), dan HTML + CSS Bootstrap (Hasil copy dari ChatGPT)
 
 ## Installation & updates
 
