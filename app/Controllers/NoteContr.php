@@ -111,11 +111,25 @@ class NoteContr extends BaseController
         return redirect()->to('/dashboard');
     }
 
-    public function search()
-    {
+    // public function search()
+    // {
+    //     $model = model(NoteModel::class);
+    //     $title = $this->request->getVar('cari');
+    //     $searchRow['row'] = $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->where("title", $title)->first();        
+    //     return view('SearchRes', $searchRow);
+    // }
+
+    public function search(){
         $model = model(NoteModel::class);
-        $title = $this->request->getVar('cari');
-        $searchRow['row'] = $model->join("kategori", "kategori.id_kategori = diary.id_kategori", "inner")->where("title", $title)->first();        
-        return view('SearchRes', $searchRow);
+        $kata_kunci = $this->request->getPost('cari');
+        // $query = $model->query("SELECT * FROM diary INNER JOIN kategori ON diary.id_kategori=kategori.id_kategori WHERE title LIKE '%" . $kata_kunci . "%'");
+        $query = $model->select('*')->join('kategori', 'diary.id_kategori = kategori.id_kategori', 'inner')->like('title', $kata_kunci)->first();
+
+        if (!empty($kata_kunci)) {
+            $data['hasil'] = $query;
+        } else {
+            $data['hasil'] = array();
+        }
+        return view('SearchRes', $data);
     }
 }

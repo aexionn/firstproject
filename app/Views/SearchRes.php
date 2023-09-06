@@ -7,24 +7,22 @@
             <input class="form-control me-2" type="search" name="cari" placeholder="Cari Berdasarkan Judul" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Cari</button>
         </form>
-        <?php foreach ($row as $array):?>
+        <?php if (isset($hasil)):?>
         <div class="row mt-4">
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-body"> 
-                            <h5 class="card-title"><?= $row->title ?></h5>
-                            <p class="card-text"><?= $row['content'] ?></p>
-                            <p class="card-text">Kategori: <?= $row['kategori'] ?></p>
-                            <a href="/edit/<?= $row['id'] ?>" class="btn btn-primary">Ubah</a>
+                            <h5 class="card-title"><?= $hasil['title'] ?></h5>
+                            <p class="card-text"><?= $hasil['content'] ?></p>
+                            <p class="card-text">Kategori: <?= $hasil['kategori'] ?></p>
+                            <a href="/edit/<?= $hasil['id'] ?>" class="btn btn-primary">Ubah</a>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Hapus</button>
                     </div>
                 </div>
             </div>
         </div>
-        <form action="/delete/<?= $row['id'] ?>" method="post" class="d-inline">
-        <?php
-            endforeach;
-        ?>
+        <form action="/delete/<?= $hasil['id'] ?>" method="post" class="d-inline">
+        <?php endif; ?>
             <?= csrf_field() ?>
             <input type="hidden" name="_method" value="DELETE">
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">>
