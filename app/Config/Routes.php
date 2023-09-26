@@ -35,7 +35,7 @@ $routes->match(['get', 'post'], '/loginProcess', 'LoginContr::auth');
 $routes->get('/login', 'LoginContr::index');
 $routes->get('/dashboard', 'NoteContr::dashboard');
 $routes->get('/saveNote', 'NoteContr::save');
-$routes->match(['get', 'post'], '/saveProcess', 'NoteContr::saveProcess');
+$routes->post('/saveProcess', 'NoteContr::saveProcess');
 $routes->get('/logout', 'LoginContr::logout');
 $routes->get('/edit/(:segment)', 'NoteContr::edit/$1');
 $routes->put('/editProcess/(:any)', 'NoteContr::editProcess/$1');
@@ -46,7 +46,7 @@ $routes->put('/editPassword/(:any)', 'ProfileContr::editUserPassword/$1');
 $routes->delete('/deleteUser/(:num)', 'ProfileContr::deleteUser/$1');
 $routes->put('/editAvatar/(:any)', 'ProfileContr::editUserAvatar/$1');
 $routes->delete('/deleteAvatar/(:any)', 'ProfileContr::removeAvatar/$1');
-$routes->post('/cari', 'NoteContr::search');
+$routes->get('/cari', 'NoteContr::search');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

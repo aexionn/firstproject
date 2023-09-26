@@ -2,8 +2,7 @@
 <html>
 <head>
     <title>Aplikasi Catatan Pribadi</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>bootstrap-5.3.0-alpha1-dist/css/bootstrap.css">
     
     <script src="<?= base_url() ?>vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -51,7 +50,7 @@
                             <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
                             <!-- <li><a class="dropdown-item" href="/editUser/<?=session()->get('id')?>">Edit Profile</a></li> -->
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">Keluar</a></li>
+                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#modalLogout" style="cursor: pointer;">Keluar</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -60,14 +59,14 @@
     </nav>    
     <div class="container">
         <?= $this->renderSection('content') ?>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan !</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <p>Anda Yakin Logout !</p>
                 </div>
                 <div class="modal-footer">
@@ -78,6 +77,6 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url(); ?>bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

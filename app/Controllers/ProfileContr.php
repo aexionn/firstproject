@@ -32,24 +32,27 @@ class ProfileContr extends BaseController
     public function editUserPassword($id_user)
     {
         $passUpdate = Time::now('Asia/Shanghai');
-        $rules = [
-            'password'      => ['required', 'min_length[4]', 'max_length[50]', 'matches[confpassword]'],
-            'confpassword'  => ['matches[password]'],
-        ];
-
+        // $rules = [
+        //     'oldpassword'  => ['required', 'min_length[4]', 'max_length[50]', 'matches[confpassword]'],
+        //     'newpassword'  => ['matches[password]'],
+        // ];
         $data = $this->request->getPost();
+        $model = model(UserModel::class);
+        $builder = $model->table('user');
+        $passDb = $builder->select('password')->where('id_user', $id_user)->first();
+        // dd($passDb);
 
-        if($this->validate($rules)){
+        if(password_verify($data['oldpassword'], $passDb['password'])){
             $model = model(UserModel::class);
             $dataUser = [
-                'password'   => password_hash($data['password'], PASSWORD_DEFAULT),
+                'password'   => password_hash($data['newpassword'], PASSWORD_DEFAULT),
                 'password_updated_at' => $passUpdate,
             ];
             // var_dump($dataUser);
             $model->update($id_user, $dataUser);
             return redirect()->to('/userProfile')->with('userEditMsg', 'Kata Sandi berhasil diubah'); 
         } else{
-            return redirect()->to('/userProfile')->with('userEditMsg', 'Kata Sandi gagal diubah'); 
+            return redirect()->to('/userProfile')->with('userEditMsgGagal', 'Kata Sandi gagal diubah'); 
         }
     }
 

@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
     <div class="container">
         <h1 class="text-center my-4">Beranda</h1>
-        <form class="d-flex" action="/cari" method="post" role="search">
+        <form class="d-flex" action="/cari" method="get" role="search">
             <input class="form-control me-2" type="search" name="cari" placeholder="Cari Berdasarkan Judul" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Cari</button>
         </form>

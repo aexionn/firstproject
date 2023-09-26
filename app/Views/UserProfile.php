@@ -3,8 +3,14 @@
 <?= $this->section('content') ?> 
 <div class="container">
     <?php if(session()->getFlashData('userEditMsg')): ?>
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= session()->getFlashData('userEditMsg'); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php elseif(session()->getFlashData('userEditMsgGagal')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= session()->getFlashData('userEditMsgGagal'); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif; ?>
     <h1 class="my-4 text-center">Profil Pengguna</h1>
@@ -67,7 +73,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center">
-                            <p>Apakah Anda Yakin Ingin Foto Profil Anda ?</p>
+                            <p>Apakah Anda Yakin Ingin Menghapus Foto Profil Anda ?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Ya</button>
@@ -172,12 +178,12 @@
                         <?= csrf_field() ?>
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group mb-3">
-                                <label for="password" class="col-form-label">Kata Sandi</label>
-                                <input type="password" class="form-control" id="pass" name="password">
+                                <label for="oldpass" class="col-form-label">Kata Sandi Lama</label>
+                                <input type="password" class="form-control" id="oldpass" name="oldpassword">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="confpassword" class="col-form-label">Konfirmasi Kata Sandi</label>
-                                <input type="password" class="form-control" id="confpass" name="confpassword"  value="">
+                                <label for="newpass" class="col-form-label">Kata Sandi Baru</label>
+                                <input type="password" class="form-control" id="newpass" name="newpassword" value="<?= set_value('newpassword'); ?>">
                             </div>
                             </div>
                             <div class="form-group modal-footer">
