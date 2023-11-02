@@ -8,7 +8,7 @@ class KategoriModel extends Model
 {
     protected $table="kategori";
     protected $primaryKey = "id_kategori";
-    protected $allowedFields = ['kategori'];
+    protected $allowedFields = ['kategori', 'deskripsi'];
 
     public function getKategori()
     {
@@ -16,4 +16,6 @@ class KategoriModel extends Model
         ->select('*')
         ->get()->getResultArray();
     }
+
+    
 }

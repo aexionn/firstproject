@@ -3,12 +3,22 @@
 <head>
     <title>Aplikasi Catatan Pribadi</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>bootstrap-5.3.0-alpha1-dist/css/bootstrap.css">
-    
+    <!-- <link href="<?= base_url(); ?>mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="<?= base_url(); ?>mobiscroll/js/mobiscroll.javascript.min.js"></script> -->
+    <link href="<?= base_url(); ?>fontawesome-free-6.4.2-web\css\all.css" rel="stylesheet"> 
+    <link href="<?= base_url(); ?>multiple-select-1.6.0\dist\multiple-select.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+	<script src="<?= base_url(); ?>multiple-select-1.6.0\dist\multiple-select.min.js"></script>	
     <script src="<?= base_url() ?>vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
       tinymce.init({
         selector: '#mytextarea'
       });
+    </script>
+    <script>
+      $(function() {
+        $('.multiple-select').multipleSelect()
+      })
     </script>
     <script>
         function prevImage() {
@@ -26,6 +36,28 @@
             }
         }
     </script>
+    <style>
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the width as needed */
+            gap: 10px; /* Add gap between cards */
+        }
+
+        /* .card {
+            display: inline-block;
+            width: 20em; 
+            margin: 10px; 
+        } */
+
+        .btn-bin {
+            float: right;
+            margin-top: 5em;
+        }
+
+        .pagination {
+            margin-left: 7em;
+        }
+    </style>
 </head>
 <body>  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,6 +74,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/saveNote">Tambah Catatan</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addCate">Tambah Kategori</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listCate">List Kategori</a> 
+                    </li>
                     <li class="nav-item dropdown dropdown-end">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hi, <?=session()->get('nama')?>
@@ -57,23 +95,21 @@
             </div>
         </div>
     </nav>    
-    <div class="container">
-        <?= $this->renderSection('content') ?>
-        <div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+    <?= $this->renderSection('content') ?>
+    <div class="modal fade modal-lg" id="modalLogout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan !</h1>
+                    <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">PERINGATAN !</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-center">
-                    <p>Anda Yakin Logout !</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="/logout" role="button" class="btn btn-primary">Ya</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                </div>
-                </div>
+            <div class="modal-body text-center text-lg">
+                <p>Anda Yakin Logout !</p>
+            </div>
+            <div class="modal-footer">
+                <a href="/logout" role="button" class="btn btn-outline-warning">Ya</a>
+                <button type="button" class="btn  btn-outline-primary" data-bs-dismiss="modal">Tidak</button>
+            </div>
             </div>
         </div>
     </div>

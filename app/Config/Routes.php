@@ -47,6 +47,15 @@ $routes->delete('/deleteUser/(:num)', 'ProfileContr::deleteUser/$1');
 $routes->put('/editAvatar/(:any)', 'ProfileContr::editUserAvatar/$1');
 $routes->delete('/deleteAvatar/(:any)', 'ProfileContr::removeAvatar/$1');
 $routes->get('/cari', 'NoteContr::search');
+$routes->get('/addCate', 'NoteContr::addCategory');
+$routes->post('/cateProcess', 'NoteContr::addCatProcess');
+$routes->get('/restoreNote', 'NoteContr::restore');
+$routes->get('/restoreNote/(:num)', 'NoteContr::restore/$1');
+$routes->delete('/deletePermanent', 'NoteContr::delPermanent');
+$routes->delete('/deletePermanent/(:num)', 'NoteContr::delPermanent/$1');
+$routes->get('/listCate', 'NoteContr::listCategory');
+$routes->get('/editCate/(:any)', 'NoteContr::editCategory/$1');
+$routes->put('/editCateProcess/(:any)', 'NoteContr::editCProcess/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

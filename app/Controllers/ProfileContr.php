@@ -8,7 +8,6 @@ use CodeIgniter\I18n\Time;
 class ProfileContr extends BaseController
 {
     
-
     public function profile()
     {
         $session = session();
@@ -25,8 +24,14 @@ class ProfileContr extends BaseController
     {
         $model = model(UserModel::class);
         $data = $this->request->getPost();
-        $model->update($id_user, $data);
-        return redirect()->to('/userProfile')->with('userEditMsg', 'Data berhasil diubah'); 
+
+        if(!empty($data)){
+            $model->update($id_user, $data);
+            return redirect()->to('/userProfile')->with('userEditMsg', 'Data berhasil diubah'); 
+        }else{
+            return redirect()->to('/userProfile')->with('userEditMsgGagal', 'Data gagal diubah'); 
+        }
+
     }
 
     public function editUserPassword($id_user)
