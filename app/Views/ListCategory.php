@@ -27,29 +27,29 @@
                     </td>
                 </tr>
         </tbody>
-    </table>
-    <form action="/delete/<?= $value['id_kategori'] ?>" method="post" class="d-inline">    
-        <?php } ?>
-        <?= csrf_field() ?>
-        <input type="hidden" name="_method" value="DELETE">
-        <div class="modal fade modal-lg" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">>
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h5 class="modal-title text-danger">PERINGATAN !</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <p>Apakah Anda Yakin Ingin Menghapus Catatan ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-warning">Ya</button>
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Tidak</button>
+        <form action="/deletecate/<?= $value['id_kategori'] ?>" method="post" class="d-inline">    
+            <?php } ?>
+            <?= csrf_field() ?>
+            <input type="hidden" name="_method" value="DELETE">
+            <div class="modal fade modal-lg" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title text-danger">PERINGATAN !</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p>Apakah Anda Yakin Ingin Menghapus Kategori Ini ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-warning">Ya</button>
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Tidak</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </table>
 </div>
 
 <?= $this->endSection() ?>

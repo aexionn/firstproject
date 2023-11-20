@@ -7,55 +7,15 @@
     <script src="<?= base_url(); ?>mobiscroll/js/mobiscroll.javascript.min.js"></script> -->
     <link href="<?= base_url(); ?>fontawesome-free-6.4.2-web\css\all.css" rel="stylesheet"> 
     <link href="<?= base_url(); ?>multiple-select-1.6.0\dist\multiple-select.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>vendor/jquery/jquery-3.7.1.js"></script>
 	<script src="<?= base_url(); ?>multiple-select-1.6.0\dist\multiple-select.min.js"></script>	
     <script src="<?= base_url() ?>vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-      tinymce.init({
-        selector: '#mytextarea'
-      });
-    </script>
-    <script>
-      $(function() {
-        $('.multiple-select').multipleSelect()
-      })
-    </script>
-    <script>
-        function prevImage() {
-            const avatar = document.querySelector('#avatar');
-            const avatarLabel = document.querySelector('.input-group-text');
-            const previewAvatar = document.querySelector('.img-preview');
-            
-            avatarLabel.text_context = avatar.files[0].name;
-
-            const fileAvatar = new FileReader();
-            fileAvatar.readAsDataURL(avatar.files[0]);
-
-            fileAvatar.onload = function(e) {
-                previewAvatar.src = e.target.result; 
-            }
-        }
-    </script>
+    
     <style>
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the width as needed */
-            gap: 10px; /* Add gap between cards */
-        }
-
-        /* .card {
-            display: inline-block;
-            width: 20em; 
-            margin: 10px; 
-        } */
-
         .btn-bin {
             float: right;
-            margin-top: 5em;
-        }
-
-        .pagination {
-            margin-left: 7em;
+            margin-top: 3em;
+            margin-bottom: 3em;
         }
     </style>
 </head>
@@ -113,6 +73,72 @@
             </div>
         </div>
     </div>
-    <script src="<?= base_url(); ?>bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url(); ?>bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js"></script>    
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+    <script>
+        $(function() {
+            $('.multiple-select').multipleSelect()
+        })
+    </script>
+    <script>
+        function prevImage() {
+            const avatar = document.querySelector('#avatar');
+            const avatarLabel = document.querySelector('.input-group-text');
+            const previewAvatar = document.querySelector('.img-preview');
+            
+            avatarLabel.text_context = avatar.files[0].name;
+
+            const fileAvatar = new FileReader();
+            fileAvatar.readAsDataURL(avatar.files[0]);
+
+            fileAvatar.onload = function(e) {
+                previewAvatar.src = e.target.result; 
+            }
+        }
+    </script>
+    <script>
+         $(document).ready(function() {
+            $('#recently-update').click(function() {
+                // Select all card elements and store them in an array
+                var cards = $('#card-note').get();
+
+                // Sort the card elements based on their data-card-id attribute
+                cards.sort(function(a, b) {
+                    var cardIdA = new Date($(a).data('date-update'));
+                    var cardIdB = new Date($(b).data('date-update'));
+                    return cardIdB - cardIdA;
+                });
+
+                // Append the sorted card elements back to their parent container
+                $.each(cards, function(index, card) {
+                    $('#card-container').append(card);
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#recently-create').click(function() {
+                // Select all card elements and store them in an array
+                var cards = $('#card-note').get();
+
+                // Sort the card elements based on their data-card-id attribute
+                cards.sort(function(a, b) {
+                    var cardIdA = new Date($(a).data('date-create'));
+                    var cardIdB = new Date($(b).data('date-create'));
+                    return cardIdB - cardIdA;
+                });
+
+                // Append the sorted card elements back to their parent container
+                $.each(cards, function(index, card) {
+                    $('#card-container').append(card);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

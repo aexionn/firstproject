@@ -56,6 +56,8 @@ $routes->delete('/deletePermanent/(:num)', 'NoteContr::delPermanent/$1');
 $routes->get('/listCate', 'NoteContr::listCategory');
 $routes->get('/editCate/(:any)', 'NoteContr::editCategory/$1');
 $routes->put('/editCateProcess/(:any)', 'NoteContr::editCProcess/$1');
+$routes->delete('/deletecate/(:num)', 'NoteContr::deletecate/$1');
+$routes->delete('/delcateonnote/(:any)/(:any)', 'NoteContr::delCateOnNote/$1/$2');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

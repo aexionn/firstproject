@@ -17,7 +17,7 @@
                     <label for="judul">Judul</label>
                     <input type="text" class="form-control my-3" id="judul" value="<?= $notes['title'] ?>" name="title" required>
                 </div>
-                <p>Kategori Terpilih: <span class="badge text-bg-info"><?= $notes['kategoris'] . ',' ?></span></p>
+                <p>Kategori Terpilih: <a href="#" data-bs-toggle="modal" data-bs-target="#ubahKategori" class="badge text-bg-info"><?= $notes['kategoris'] . ',' ?></a></p>
                 <div class="form-group">
                     <label for="kategori">Kategori:</label>
                     <select multiple="multiple" class="multiple-select" id="kategori" name="kategori[]">
@@ -37,5 +37,49 @@
                 </div>
             </form>
         <?php } ?>
+        <div class="modal fade" id="ubahKategori" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="ubahKategoriLabel" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ubah Kategori</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">    
+                    <?php foreach ($ubahkat as $kat) { ?>
+                        <div class="card mb-4">
+                            <div class="card-body"> 
+                                <h5 class="card-title"><?= $kat['kategori'] ?></h5>
+                                <button class="btn btn-outline-danger my-3" data-bs-target="#delKategori" data-bs-toggle="modal">Hapus Kategori</button>
+                                <!-- <span class='badge text-bg-info'></span>  -->
+                            </div>
+                        </div>
+                    <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php foreach ($ubahkat as $kat) { ?>
+        <form action="/delcateonnote/<?= $kat['id_diary'] ?>/<?= $kat['id_kategori'] ?>" method="post" class="d-inline"> 
+        <?php } ?>
+            <?= csrf_field() ?>
+            <input type="hidden" name="_method" value="DELETE">
+            <div class="modal fade modal-lg" id="delKategori" tabindex="-1" aria-labelledby="delKategoriLabel" aria-hidden="true">>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title text-danger">PERINGATAN !</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p>Apakah Anda Yakin Ingin Menghapus Kategori ini ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-warning">Ya</button>
+                            <button type="button" class="btn btn-outline-primary" data-bs-target="#ubahKategori" data-bs-toggle="modal">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 <?= $this->endSection() ?>

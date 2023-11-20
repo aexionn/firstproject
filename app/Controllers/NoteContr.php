@@ -12,6 +12,7 @@ class NoteContr extends BaseController
 
     public function dashboard()
     {
+        helper('text');
         $pager = \Config\Services::pager();
         $model = model(DiaryModel::class);
         $katModel = model(Kategori::class);
@@ -24,11 +25,12 @@ class NoteContr extends BaseController
         ->groupBy('diary.id_diary');
 
         $data = [
-            'note' => $entries->paginate(3, 'note'),
+            'note' => $entries->paginate(2, 'note'),
             'pager' => $pager,
-            'softdel' => $entries->where('deleted_at !=', NULL)->get()->getResultArray()
+            'softdel' => $entries->where('deleted_at IS NOT NULL')->get()->getResultArray()
         ];
         
+        // dd($data);
         return view('Dashboard', $data);
        
     }
@@ -41,7 +43,8 @@ class NoteContr extends BaseController
             'data' => $kategori->where('kategori.id_user', NULL)->orWhere('kategori.id_user', session()->get('id'))->findAll(),
             'validation' => \Config\Services::validation(),
         ];
-        return view('AddNote', $list);
+        
+        return view('AddNote', $list); 
     }
 
     public function edit($id=null)
@@ -49,7 +52,13 @@ class NoteContr extends BaseController
         session();
         $kategori = model(KategoriModel::class);
         $note = model(DiaryModel::class);
+
         $entries = $note->select('diary.*, GROUP_CONCAT(kategori.kategori) AS kategoris')->join('kategori_diary', 'kategori_diary.id_diary = diary.id_diary')
+        ->join('kategori', 'kategori.id_kategori = kategori_diary.id_kategori')
+        ->where('diary.id_diary', $id)
+        ->findAll();
+
+        $ubahKat = $note->select('*')->join('kategori_diary', 'kategori_diary.id_diary = diary.id_diary')
         ->join('kategori', 'kategori.id_kategori = kategori_diary.id_kategori')
         ->where('diary.id_diary', $id)
         ->findAll();
@@ -58,11 +67,35 @@ class NoteContr extends BaseController
             $data = [
                 'note' => $entries,
                 'kategori' => $kategori->where('kategori.id_user', NULL)->orWhere('kategori.id_user', session()->get('id'))->findAll(),
+                'ubahkat' => $ubahKat,
                 'validation' => \Config\Services::validation(),
             ];
                
             return view('EditNote', $data); 
         } 
+    }
+
+    public function addCategory()
+    {
+        session();
+        return view('AddCategory', ['validation' =>  \Config\Services::validation()]);
+    }
+
+    public function editCategory($id_kategori)
+    {
+        $katModel = model(KategoriModel::class);
+        $data = $katModel->where('id_kategori', $id_kategori)->findAll();
+        return view('EditCategory', ['data' => $data]);
+    }
+
+    public function listCategory()
+    {
+        $katModel = model(KategoriModel::class);
+        $data = [
+            "data" => $katModel->where('kategori.id_user', session()->get('id'))->findAll(),                    
+        ];
+
+        return view('ListCategory', $data);
     }
 
     public function saveProcess()
@@ -165,34 +198,11 @@ class NoteContr extends BaseController
 
     public function delete($id)
     {
-        $model = model(DiaryModel::class);
-        $OtherModel = model(OtherModel::class);
+        $model = model(DiaryModel::class);        
         $model->delete($id); 
         return redirect()->to('/dashboard')->with('sukses', 'Data berhasil dihapus');
     }
 
-    public function addCategory()
-    {
-        session();
-        return view('AddCategory', ['validation' =>  \Config\Services::validation()]);
-    }
-
-    public function editCategory($id_kategori)
-    {
-        $katModel = model(KategoriModel::class);
-        $data = $katModel->where('id_kategori', $id_kategori)->findAll();
-        return view('EditCategory', ['data' => $data]);
-    }
-
-    public function listCategory()
-    {
-        $katModel = model(KategoriModel::class);
-        $data = [
-            "data" => $katModel->where('kategori.id_user', session()->get('id'))->findAll(),                    
-        ];
-
-        return view('ListCategory', $data);
-    }
 
     public function addCatProcess()
     {
@@ -229,7 +239,6 @@ class NoteContr extends BaseController
 
     public function editCProcess($id_kategori)
     {
-        
         $rules = [
             'kategori' => [
                 'rules'  => 'required',
@@ -250,7 +259,15 @@ class NoteContr extends BaseController
         }
     }
 
-    public function search(){
+    public function deletecate($id_kategori)
+    {
+        $model = model(KategoriModel::class);
+        $model->delete($id_kategori); 
+        return redirect()->to('/dashboard')->with('sukses', 'Kategori Anda Telah di Hapus');
+    }
+
+    public function search()
+    {
         $pager = \Config\Services::pager();
         $model = model(DiaryModel::class);
         $session = session();
@@ -295,5 +312,10 @@ class NoteContr extends BaseController
         }
     }
 
-    
+    public function delCateOnNote($id_diary, $id_kategori)
+    {
+        $model = model(OtherModel::class);
+        $model->where(['id_diary' => $id_diary, 'id_kategori' => $id_kategori])->delete(); 
+        return redirect()->to('/dashboard')->with('sukses', 'Kategori Anda Telah di Hapus');
+    }
 }

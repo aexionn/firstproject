@@ -27,18 +27,22 @@
                             <div class="form-group mb-3">
                                 <label for="name" class="form-label">Nama</label>
                                 <input type="text" name="name" placeholder="Nama" value="<?= set_value('name') ?>" class="form-control" >
+                                <span class="text-danger form-text"><?= validation_show_error('name'); ?></span>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
+                                <input type="text" name="email" placeholder="Email" value="<?= set_value('email') ?>" class="form-control" >
+                                <span class="text-danger form-text"><?= validation_show_error('email'); ?></span>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">Kata Sandi</label>
                                 <input type="password" name="password" placeholder="Password" value="<?= set_value('password') ?>" class="form-control" >
+                                <span class="text-danger form-text"><?= validation_show_error('password'); ?></span>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="confpassword" class="form-label">Ulangi Password</label>
+                                <label for="confpassword" class="form-label">Ulangi Kata Sandi</label>
                                 <input type="password" name="confpassword" placeholder="Ulangi Password" value="<?= set_value('confpassword') ?>" class="form-control" >
+                                <span class="text-danger form-text"><?= validation_show_error('confpassword'); ?></span>
                             </div>
                             <div class="d-grid gap-3">
                                 <button type="submit" class="btn btn-primary">Daftar</button>
