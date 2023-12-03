@@ -38,11 +38,11 @@
                         <a class="nav-link" href="/addCate">Tambah Kategori</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/listCate">List Kategori</a> 
+                        <a class="nav-link" href="/listCate">Daftar Kategori</a> 
                     </li>
                     <li class="nav-item dropdown dropdown-end">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Hi, <?=session()->get('nama')?>
+                            Hai, <?=session()->get('nama')?>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/userProfile">Profile</a></li>
@@ -75,16 +75,12 @@
     </div>
     <script src="<?= base_url(); ?>bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js"></script>    
     <script>
-      tinymce.init({
-        selector: '#mytextarea'
-      });
-    </script>
-    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
         $(function() {
             $('.multiple-select').multipleSelect()
         })
-    </script>
-    <script>
         function prevImage() {
             const avatar = document.querySelector('#avatar');
             const avatarLabel = document.querySelector('.input-group-text');
@@ -99,46 +95,43 @@
                 previewAvatar.src = e.target.result; 
             }
         }
-    </script>
-    <script>
-         $(document).ready(function() {
-            $('#recently-update').click(function() {
-                // Select all card elements and store them in an array
-                var cards = $('#card-note').get();
 
-                // Sort the card elements based on their data-card-id attribute
+        $(document).ready(function() {
+            $('#recently-update').click(function() {
+                var cards = $('.card').get();
+
                 cards.sort(function(a, b) {
                     var cardIdA = new Date($(a).data('date-update'));
                     var cardIdB = new Date($(b).data('date-update'));
                     return cardIdB - cardIdA;
                 });
 
-                // Append the sorted card elements back to their parent container
+                $('#card-container-note').empty(); // Clear the container before appending sorted cards
+
                 $.each(cards, function(index, card) {
-                    $('#card-container').append(card);
+                    $('#card-container-note').append(card);
                 });
             });
         });
-    </script>
-    <script>
+
         $(document).ready(function() {
             $('#recently-create').click(function() {
-                // Select all card elements and store them in an array
-                var cards = $('#card-note').get();
+                var cards = $('.card').get();
 
-                // Sort the card elements based on their data-card-id attribute
                 cards.sort(function(a, b) {
                     var cardIdA = new Date($(a).data('date-create'));
                     var cardIdB = new Date($(b).data('date-create'));
                     return cardIdB - cardIdA;
                 });
 
-                // Append the sorted card elements back to their parent container
+                $('#card-container-note').empty(); // Clear the container before appending sorted cards
+
                 $.each(cards, function(index, card) {
-                    $('#card-container').append(card);
+                    $('#card-container-note').append(card);
                 });
             });
         });
+
     </script>
 </body>
 </html>

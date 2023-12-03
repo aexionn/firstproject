@@ -316,6 +316,6 @@ class NoteContr extends BaseController
     {
         $model = model(OtherModel::class);
         $model->where(['id_diary' => $id_diary, 'id_kategori' => $id_kategori])->delete(); 
-        return redirect()->to('/dashboard')->with('sukses', 'Kategori Anda Telah di Hapus');
+        return redirect()->to('/edit')->with('sukses', 'Kategori Anda Telah di Hapus');
     }
 }

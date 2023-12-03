@@ -25,7 +25,7 @@
             $formattedUpdate = date('Y-m-d H:i:s', $updateDate);
             $formattedCreate = date('Y-m-d H:i:s', $createDate);
         ?>
-        <div id="card-container">
+        <div id="card-container-note">
             <div class="card my-3 w-100" id="card-note" data-date-update="<?= $formattedUpdate; ?>" data-date-create="<?= $formattedCreate; ?>">
                 <div class="card-body"> 
                     <h5 class="card-title"><?= $noteData['title'] ?></h5>
@@ -74,7 +74,7 @@
                     <div class="modal-body">
                         <?php foreach ($softdel as $key) : ?>
                         <div class="card-container">
-                            <div class="card mb-4">
+                            <div class="card-bin mb-4">
                                 <div class="card-body"> 
                                     <h5 class="card-title"><?= $key['title'] ?></h5>
                                     <p class="card-text"><?= excerpt($key['content'], false, 50) ?></p>

@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container">
-    <h1 class="text-center my-4">List Kategori</h1>
+    <h1 class="text-center my-4">Daftar Kategori</h1>
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
